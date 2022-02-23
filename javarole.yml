@@ -1,0 +1,7 @@
+---
+- name: javarole playbook
+  hosts: target
+  become_user: root
+  become: true
+  roles:
+    - role: test-role-1
