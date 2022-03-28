@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+  tasks:
+  - name: Install apache Tomact
+    yum:
+      name: httpd
+      state: present
+  - name: Enable service 
+    service:
+      name: httpd
+      state: started
+  - name:  firewall rule 
+    firewalld:
+       service: http
+       zone: public
+       permanent: yes
+       immediate: yes
+       state: enabled
+  handlers:
+    - name: Restart apache service
+      service:
+       name: httpd
+       state: restarted
+...

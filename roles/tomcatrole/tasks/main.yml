@@ -1,0 +1,33 @@
+---
+# tasks file for tomcatrole
+
+- name: "Determine if the HTTPD is installed"
+    register: validatehttpd
+    shell: httpd
+- name: check if httpd Apache installed with latest version
+  yum:
+    name: httpd
+    name: php
+    state: latest
+  when: 'not found' in validatehttpd.stdout
+- name: Enable service 
+  service:
+    name: httpd
+    state: started
+  service:
+    name: firewalld
+    state: started
+- name: firewall rule for apache service
+  firewalld:
+    service: http
+    zone: public
+    permanent: yes
+    immediate: yes
+    state: enabled
+- name: test the page
+  copy:
+    content: " welcome to page add me " 
+    dest: /var/www/html/index.html
+  notify: restart service
+
+...

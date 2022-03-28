@@ -30,8 +30,8 @@
 
 # Ex 3: A collection of database servers in the 'dbservers' group
 
-[target]
-192.168.29.236
+[all]
+192.168.33.11
  
 ## db01.intranet.mydomain.net
 ## db02.intranet.mydomain.net
