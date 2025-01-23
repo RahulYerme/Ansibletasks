@@ -1,6 +1,6 @@
 ---
 - name: Hello World Playbook
-  hosts: localhost
+  hosts: xyz
   gather_facts: yes
   tasks:
     - name: Print Hello, World!
